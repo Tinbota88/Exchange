@@ -265,7 +265,7 @@ input[type=range]{padding:0;height:6px;border:none;background:var(--bg3);margin-
 <script>
 const KEY="spt_v3";
 const CAMPIONATI=["Serie A","Serie B","Serie C","Premier League","Championship","Bundesliga","Bundesliga 2","La Liga","La Liga 2","Ligue 1","Bundesliga (Austria)","Super League (Grecia)","Süper Lig (Turchia)","Eredivisie","Jupiler League","Saudi Professional League","Liga Portugal","Premiership (Scozia)","Champions League","Europa League","Conference League","Mondiali","Europei","Superliga (Danimarca)","1st Division (Danimarca)","Veikkausliga (Finlandia)","Virsliga (Lettonia)","1. Liga (Rep. Ceca)","Superliga (Romania)","Allsvenskan (Svezia)","HNL (Croazia)","Coppa Italia","Copa del Rey","FA Cup","Coppa di Turchia","DFB Pokal","Carabao Cup","Taca de Portugal","Coppa del Belgio","Coppa di Francia","Coppa di Olanda"];
-const MERCATI=["Ov. 0.5 T1","Ov. 1.5 T1","Ov. 2.5 T1","Ov. 0.5","Ov. 1.5","Ov. 2.5","Ov. 3.5","Ov. 4.5","Ov. 5.5","1","X","2","Si qualifica","Non si qualifica","Goal","No Goal"];
+const MERCATI=["Ov. 0.5 T1","Ov. 1.5 T1","Ov. 2.5 T1","Ov. 0.5","Ov. 1.5","Ov. 2.5","Ov. 3.5","Ov. 4.5","Ov. 5.5","1","X","2","Si qualifica Casa","Si qualifica Ospite","Non si qualifica Casa","Non si qualifica Ospite","Goal","No Goal"];
 let bets=[];
 let afChart=null;
 
@@ -306,10 +306,6 @@ function showTab(t){
   if(t==="filtri")renderFiltri();
   if(t==="sim")calcSim();
 }
-
-document.getElementById("f-esito").addEventListener("change",function(){
-  document.getElementById("cashout-row").style.display=this.value==="C"?"block":"none";
-});
 
 function calcNetto(stake,quota,esito,tax,cashoutAmt){
   if(esito==="L")return -stake;
@@ -577,9 +573,11 @@ function downloadFile(content,filename,type){
   setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 
-load();
-populateSelects();
-updateHeader();
+document.addEventListener("DOMContentLoaded",function(){
+  load();
+  populateSelects();
+  updateHeader();
+});
 </script>
 </body>
 </html>
